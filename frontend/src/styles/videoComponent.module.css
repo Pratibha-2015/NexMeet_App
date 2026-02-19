@@ -1,0 +1,717 @@
+/* ═══════════════════════════════════════════════════════════════
+   NexMeet — videoComponent.module.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Google Font Import ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LOBBY
+══════════════════════════════════════════════════════════════ */
+
+.lobbyBg {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 30% 20%, #0d1e30 0%, #060d18 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
+.lobbyCard {
+  background: rgba(15, 28, 44, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px 36px;
+  width: 420px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+}
+
+.lobbyHeader {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logo {
+  font-size: 30px;
+  color: #1668dc;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.lobbyTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: #e0ecff;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.lobbySubtitle {
+  font-size: 13px;
+  color: #556677;
+  margin: 6px 0 0;
+}
+
+/* Preview */
+.previewWrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0a1520;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.previewNoCamera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  color: #445566;
+  font-size: 13px;
+  gap: 8px;
+}
+
+/* Form */
+.lobbyForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.permError {
+  color: #ff5252;
+  font-size: 12px;
+  padding: 8px 12px;
+  background: #3a1f1f;
+  border-radius: 8px;
+}
+
+.usernameInput {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #e0ecff;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.usernameInput:focus {
+  border-color: #1668dc;
+}
+
+.usernameInput::placeholder {
+  color: #445566;
+}
+
+.joinBtn {
+  background: linear-gradient(135deg, #1668dc, #0e4fa8);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.joinBtn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.joinBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.copyLinkBtnLobby {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #8899aa;
+  padding: 10px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.copyLinkBtnLobby:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #c0d4e8;
+}
+
+/* Permission badges */
+.permRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.permBadge {
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.permBadgeOk {
+  background: rgba(0, 196, 116, 0.12);
+  color: #00c474;
+}
+
+.permBadgeFail {
+  background: rgba(255, 82, 82, 0.12);
+  color: #ff5252;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MEET ROOM
+══════════════════════════════════════════════════════════════ */
+
+.meetRoot {
+  height: 100vh;
+  background: #060d18;
+  display: flex;
+  flex-direction: column;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* ─── Top Bar ─────────────────────────────────────────────── */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: rgba(6, 13, 24, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 10;
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+  height: 52px;
+}
+
+.topLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topCenter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.brandName {
+  color: #e0ecff;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.3px;
+}
+
+.connDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 4px;
+  transition: background 0.4s;
+}
+
+.connDotConnected  { background: #00c474; }
+.connDotConnecting { background: #f9a825; }
+.connDotError      { background: #ff5252; }
+
+.urlText {
+  color: #445566;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 320px;
+}
+
+.participantCount {
+  color: #8899aa;
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+/* ─── Main Area ───────────────────────────────────────────── */
+.mainArea {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 0; /* ← critical: lets flex child shrink below content size */
+}
+
+/* ─── Video Grid ──────────────────────────────────────────── */
+/* Columns controlled via inline style in VideoMeetComponent (getGridCols) */
+.videoGrid {
+  flex: 1;
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  /* ← auto rows: each row takes equal share of available height */
+  grid-auto-rows: 1fr;
+  overflow: hidden; /* no scroll — fit everything in view */
+  min-height: 0;
+  align-items: stretch;
+  transition: grid-template-columns 0.3s ease;
+}
+
+.videoCard {
+  position: relative;
+  background: #0a1520;
+  border-radius: 16px;
+  overflow: hidden;
+  /* ← REMOVED aspect-ratio: 16/9 — was causing overflow with 3-4 tiles */
+  /* Cards now fill grid cells which are sized by available height */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s;
+  min-height: 0; /* ← lets card shrink inside grid cell */
+}
+
+.videoCard:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.videoEl {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute; /* ← fill the card completely */
+  inset: 0;
+}
+
+/* Video name label */
+.videoLabel {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  padding: 3px 8px;
+  pointer-events: none;
+}
+
+.labelName {
+  color: #e0ecff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.labelIcons {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+/* Reaction float */
+.reactionFloat {
+  position: absolute;
+  bottom: 40px;
+  right: 12px;
+  font-size: 32px;
+  pointer-events: none;
+  animation: floatUp 3s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  80%  { opacity: 1; transform: translateY(-50px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-70px) scale(0.8); }
+}
+
+/* ─── Side Panels (shared base) ──────────────────────────── */
+.sidePanel,
+.chatPanel {
+  background: #0a1520;
+  border-left: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  animation: slideInRight 0.2s ease-out;
+}
+
+.sidePanel  { width: 280px; }
+.chatPanel  { width: 320px; }
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.panelTitle {
+  color: #e0ecff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ─── Participants Panel ──────────────────────────────────── */
+.participantList {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.partItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s;
+}
+
+.partItem:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.partAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1668dc, #0e4fa8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.partName {
+  color: #c0d4e8;
+  font-size: 13px;
+}
+
+/* ─── Chat Panel ──────────────────────────────────────────── */
+.msgList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.noMsg {
+  color: #445566;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.messageBubbleRow {
+  display: flex;
+}
+
+.messageBubbleRowOwn  { justify-content: flex-end; }
+.messageBubbleRowOther { justify-content: flex-start; }
+
+.bubble {
+  max-width: 82%;
+  padding: 8px 12px;
+}
+
+.bubbleOwn {
+  background: #1668dc;
+  border-radius: 16px 16px 4px 16px;
+}
+
+.bubbleOther {
+  background: #1e2d3d;
+  border-radius: 16px 16px 16px 4px;
+}
+
+.bubbleSender {
+  font-size: 11px;
+  color: #4fc3f7;
+  font-weight: 600;
+  margin: 0 0 3px;
+}
+
+.bubbleText {
+  color: #e0ecff;
+  font-size: 13px;
+  word-break: break-word;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.bubbleTime {
+  font-size: 10px;
+  color: #556677;
+  text-align: right;
+  margin: 4px 0 0;
+}
+
+/* Chat input */
+.chatInputRow {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.chatInput {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #e0ecff;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chatInput:focus {
+  border-color: rgba(22, 104, 220, 0.5);
+}
+
+.chatInput::placeholder {
+  color: #445566;
+}
+
+/* ─── Control Bar ─────────────────────────────────────────── */
+.ctrlBar {
+  height: 80px;
+  background: rgba(6, 13, 24, 0.97);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 24px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.ctrlGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctrlBtn {
+  border-radius: 14px !important;
+  width: 48px !important;
+  height: 48px !important;
+  transition: background 0.2s, transform 0.1s !important;
+}
+
+.ctrlBtn:hover {
+  transform: scale(1.05);
+}
+
+.ctrlBtnOn  { background: #1e2d3d !important; }
+.ctrlBtnOff { background: #3a1f1f !important; }
+.ctrlBtnActive { background: #0d2e4a !important; }
+
+.endBtn {
+  background: linear-gradient(135deg, #c62828, #b71c1c) !important;
+  border-radius: 16px !important;
+  width: 56px !important;
+  height: 56px !important;
+  box-shadow: 0 4px 20px rgba(198, 40, 40, 0.4) !important;
+  transition: transform 0.1s, box-shadow 0.2s !important;
+}
+
+.endBtn:hover {
+  transform: scale(1.06) !important;
+  box-shadow: 0 6px 28px rgba(198, 40, 40, 0.55) !important;
+}
+
+/* ─── Reaction Picker ─────────────────────────────────────── */
+.reactionPickerWrap {
+  position: relative;
+}
+
+.reactionPicker {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f1c2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 8px 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 50;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: popIn 0.15s ease-out;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateX(-50%) scale(0.85); }
+  to   { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+.reactionOpt {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: transform 0.15s;
+  line-height: 1;
+}
+
+.reactionOpt:hover {
+  transform: scale(1.3);
+}
+
+/* ─── Scrollbar styling ───────────────────────────────────── */
+.msgList::-webkit-scrollbar,
+.participantList::-webkit-scrollbar,
+.videoGrid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.msgList::-webkit-scrollbar-track,
+.participantList::-webkit-scrollbar-track,
+.videoGrid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.msgList::-webkit-scrollbar-thumb,
+.participantList::-webkit-scrollbar-thumb,
+.videoGrid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .lobbyCard {
+    width: calc(100vw - 32px);
+    padding: 28px 20px;
+  }
+
+  .topBar {
+    padding: 8px 12px;
+  }
+
+  .urlText {
+    display: none;
+  }
+
+  .sidePanel,
+  .chatPanel {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    bottom: 80px;
+    z-index: 30;
+  }
+
+  .sidePanel  { width: min(280px, 85vw); }
+  .chatPanel  { width: min(320px, 90vw); }
+
+  .ctrlBar {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .ctrlBtn {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .endBtn {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+/* ── Live timer (added for history feature) ───────────────────── */
+.liveTimer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e0ecff;
+  letter-spacing: 0.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.liveTimerDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff5252;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
