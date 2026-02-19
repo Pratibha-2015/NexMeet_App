@@ -20,7 +20,7 @@ import styles from '../styles/videoComponent.module.css';
 import { saveMeetingToHistory } from './history.jsx';
 import PreJoinScreen from './PreJoinScreen';
 
-const server_url = 'http://localhost:8000';
+const server_url = server;
 var connections = {};
 const peerConfigConnections = {
   iceServers: [
